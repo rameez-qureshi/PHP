@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <form id="myForm">
+      <input type="text" id="username" name="username" required />
+      <input type="password" id="password" name="password" required />
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        required
+      />
+      <input type="submit" />
+    </form>
+
+    <script>
+      const form = document.getElementById("myForm");
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+      const confirmPassword = document.getElementById("confirmPassword");
+
+      form.addEventListener("submit", (e) => {
+        if (password.value !== confirmPassword.value) {
+          e.preventDefault();
+          alert("passwords do not match");
+        }
+
+        if (password.value.length < 8) {
+          e.preventDefault();
+          alert("password is too short");
+        }
+
+        // check if username contains any number or special character
+        if (
+          !/[0-9]/.test(username.value) ||
+          !/[!@#$%^&*(),.?":{}|<>]/.test(username.value)
+        ) {
+          e.preventDefault();
+          alert("username is not valid");
+        }
+      });
+    </script>
+    
+  </body>
+</html>
